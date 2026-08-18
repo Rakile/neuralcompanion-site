@@ -1,0 +1,57 @@
+---
+import FeatureCard from '../components/FeatureCard.astro';
+import Hero from '../components/Hero.astro';
+import IntegrationCard from '../components/IntegrationCard.astro';
+import { FEATURES } from '../data/features.ts';
+import { INTEGRATIONS } from '../data/integrations.ts';
+import { SITE } from '../data/site.ts';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: SITE.name,
+  description: SITE.description,
+  operatingSystem: 'Windows',
+  applicationCategory: 'LifestyleApplication',
+  url: SITE.origin,
+  downloadUrl: SITE.releases,
+  codeRepository: SITE.repository,
+};
+---
+
+<BaseLayout
+  title="Neural Companion — Open-source desktop AI companion"
+  description={SITE.description}
+  jsonLd={jsonLd}
+>
+  <Hero />
+  <section class="section" aria-labelledby="features-heading">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Connected capabilities</p>
+          <h2 id="features-heading">A companion that can listen, remember, and appear</h2>
+        </div>
+        <a class="text-link" href="/features/">View every feature →</a>
+      </div>
+      <div class="grid">
+        {FEATURES.slice(0, 3).map((feature) => <FeatureCard {feature} />)}
+      </div>
+    </div>
+  </section>
+  <section class="section" aria-labelledby="integrations-heading">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Your setup, your stack</p>
+          <h2 id="integrations-heading">Use the local models and avatar tools that fit</h2>
+        </div>
+        <a class="text-link" href="/integrations/">Browse integrations →</a>
+      </div>
+      <div class="grid">
+        {INTEGRATIONS.slice(0, 3).map((integration) => <IntegrationCard {integration} />)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

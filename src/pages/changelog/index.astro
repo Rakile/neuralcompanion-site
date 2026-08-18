@@ -1,0 +1,22 @@
+---
+import CallToAction from '../../components/CallToAction.astro';
+import { SITE } from '../../data/site.ts';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Neural Companion Changelog and Releases"
+  description="Read Neural Companion release history and download current builds from the authoritative application repository."
+>
+  <header class="page-hero">
+    <div class="container prose">
+      <p class="eyebrow">Project updates</p>
+      <h1>Changelog</h1>
+      <p class="lede">Release history changes with the application. The public repository remains the authoritative source for shipped updates and downloadable builds.</p>
+      <div class="page-actions">
+        <CallToAction href={SITE.changelog} label="Read the changelog" />
+        <CallToAction href={SITE.releases} label="Browse releases" variant="secondary" />
+      </div>
+    </div>
+  </header>
+</BaseLayout>

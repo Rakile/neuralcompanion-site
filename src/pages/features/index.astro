@@ -1,0 +1,23 @@
+---
+import FeatureCard from '../../components/FeatureCard.astro';
+import { FEATURES } from '../../data/features.ts';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Neural Companion Features"
+  description="Explore Neural Companion features for local and API chat, voice, persistent memory, avatars, visual replies, and Windows desktop workflows."
+>
+  <header class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Capabilities</p>
+      <h1>Features</h1>
+      <p class="lede">Neural Companion brings chat, speech, memory, avatars, and visual workflows into one configurable Windows desktop application.</p>
+    </div>
+  </header>
+  <section class="section" aria-label="Neural Companion features">
+    <div class="container grid">
+      {FEATURES.filter(({ enabled }) => enabled).map((feature) => <FeatureCard {feature} />)}
+    </div>
+  </section>
+</BaseLayout>

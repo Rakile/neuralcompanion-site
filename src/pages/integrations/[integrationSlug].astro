@@ -1,0 +1,47 @@
+---
+import type { GetStaticPaths } from 'astro';
+import FeatureCard from '../../components/FeatureCard.astro';
+import { FEATURES } from '../../data/features.ts';
+import { INTEGRATIONS, type IntegrationRecord } from '../../data/integrations.ts';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export const getStaticPaths: GetStaticPaths = () =>
+  INTEGRATIONS.filter(({ enabled }) => enabled).map((integration) => ({
+    params: { integrationSlug: integration.slug },
+    props: { integration },
+  }));
+
+interface Props {
+  integration: IntegrationRecord;
+}
+
+const { integration } = Astro.props;
+const related = FEATURES.filter(({ key }) => integration.relatedFeatures.includes(key));
+---
+
+<BaseLayout title={integration.seoTitle} description={integration.seoDescription} pathname={integration.route}>
+  <header class="page-hero">
+    <div class="container prose">
+      <p class="eyebrow">{integration.category}</p>
+      <h1>{integration.name}</h1>
+      <p class="lede">{integration.summary}</p>
+    </div>
+  </header>
+  <section class="section">
+    <div class="container detail-grid">
+      <article class="prose">
+        <h2>Requirements</h2>
+        <ul>{integration.requirements.map((requirement) => <li>{requirement}</li>)}</ul>
+        <h2>Configuration</h2>
+        <ol class="steps">{integration.configuration.map((step) => <li>{step}</li>)}</ol>
+        <p><a class="text-link" href={integration.sourceUrl}>Verify in the project source →</a></p>
+      </article>
+      <aside class="info-panel">
+        <h2>Documentation</h2>
+        <p>Use the maintained project documentation for current settings and limitations.</p>
+        <a class="text-link" href={integration.documentationUrl}>Open integration documentation →</a>
+      </aside>
+    </div>
+  </section>
+  {related.length > 0 && <section class="section" aria-labelledby="related-heading"><div class="container"><h2 id="related-heading">Related Neural Companion features</h2><div class="grid">{related.map((feature) => <FeatureCard {feature} />)}</div></div></section>}
+</BaseLayout>

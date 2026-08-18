@@ -1,0 +1,20 @@
+---
+import { SITE } from '../data/site.ts';
+
+const year = new Date().getUTCFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <strong>{SITE.name}</strong>
+      <p>Open-source desktop AI companion software.</p>
+    </div>
+    <nav aria-label="Footer navigation">
+      <a href={SITE.repository}>Source</a>
+      <a href={SITE.manual}>Manual</a>
+      <a href={SITE.license}>MIT License</a>
+    </nav>
+    <p class="footer-note">© {year} Neural Companion contributors.</p>
+  </div>
+</footer>

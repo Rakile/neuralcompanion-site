@@ -1,0 +1,18 @@
+---
+import { NAV_ITEMS, SITE } from '../data/site.ts';
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="Neural Companion home">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>{SITE.name}</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <ul class="nav-list">
+        {NAV_ITEMS.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+      </ul>
+    </nav>
+    <a class="header-github" href={SITE.repository}>GitHub</a>
+  </div>
+</header>

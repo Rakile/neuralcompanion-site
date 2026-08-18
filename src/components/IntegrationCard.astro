@@ -1,0 +1,16 @@
+---
+import type { IntegrationRecord } from '../data/integrations.ts';
+
+interface Props {
+  integration: IntegrationRecord;
+}
+
+const { integration } = Astro.props;
+---
+
+<article class="card">
+  <p class="card-meta">{integration.category}</p>
+  <h3>{integration.name}</h3>
+  <p>{integration.summary}</p>
+  <a class="text-link" href={integration.route}>Connect {integration.name}<span aria-hidden="true"> →</span></a>
+</article>

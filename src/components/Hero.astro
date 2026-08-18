@@ -1,0 +1,27 @@
+---
+import { SITE } from '../data/site.ts';
+import CallToAction from './CallToAction.astro';
+
+const trackedRepository = `${SITE.repository}?utm_source=neuralcompanion_site&utm_medium=website&utm_campaign=homepage`;
+---
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <p class="eyebrow">Local-first · Open source · Modular</p>
+      <h1>Neural Companion</h1>
+      <p class="hero-kicker">Open-source AI companion platform for Windows.</p>
+      <p class="hero-copy">
+        Real-time voice, persistent memory, AI avatars, visual replies, and modular integrations—built around local or API models you choose.
+      </p>
+      <div class="action-group">
+        <CallToAction href="/download/" label="Download" />
+        <CallToAction href={trackedRepository} label="View on GitHub" variant="secondary" />
+      </div>
+    </div>
+    <div class="presence-visual" aria-hidden="true">
+      <div class="presence-ring"></div>
+      <div class="presence-orb"></div>
+    </div>
+  </div>
+</section>

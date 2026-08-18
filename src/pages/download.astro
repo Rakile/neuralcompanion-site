@@ -1,0 +1,40 @@
+---
+import CallToAction from '../components/CallToAction.astro';
+import { SITE } from '../data/site.ts';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Download Neural Companion for Windows"
+  description="Download Neural Companion from the official GitHub releases, review the source, and follow the current Windows installation guide."
+>
+  <header class="page-hero">
+    <div class="container prose">
+      <p class="eyebrow">Official downloads</p>
+      <h1>Download Neural Companion</h1>
+      <p class="lede">Release files, source code, and current installation instructions are published through the main Neural Companion application repository.</p>
+      <div class="page-actions">
+        <CallToAction href={SITE.releases} label="View releases" />
+        <CallToAction href={SITE.repository} label="Browse application source" variant="secondary" />
+      </div>
+    </div>
+  </header>
+  <section class="section">
+    <div class="container detail-grid">
+      <div class="prose">
+        <h2>Start with the graphical installer</h2>
+        <p>Most Windows users should download or clone the application repository and run <code>INSTALL_NEURAL_COMPANION.bat</code> with Python 3.11 available.</p>
+        <p>The website source lives in a separate repository and does not contain the desktop application or its releases.</p>
+      </div>
+      <aside class="info-panel">
+        <h2>Before installing</h2>
+        <ul>
+          <li>Read the current installation guide.</li>
+          <li>Choose a local or API chat provider.</li>
+          <li>Add optional avatar runtimes after basic chat and speech work.</li>
+        </ul>
+        <p><a class="text-link" href={SITE.installGuide}>Open the installation guide →</a></p>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>

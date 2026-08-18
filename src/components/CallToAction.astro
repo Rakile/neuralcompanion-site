@@ -1,0 +1,14 @@
+---
+interface Props {
+  href: string;
+  label: string;
+  variant?: 'primary' | 'secondary';
+}
+
+const { href, label, variant = 'primary' } = Astro.props;
+const external = /^https?:\/\//.test(href);
+---
+
+<a class:list={['button', { 'button--secondary': variant === 'secondary' }]} href={href} rel={external ? 'noopener' : undefined}>
+  {label}
+</a>

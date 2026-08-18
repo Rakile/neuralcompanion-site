@@ -1,0 +1,23 @@
+---
+import IntegrationCard from '../../components/IntegrationCard.astro';
+import { INTEGRATIONS } from '../../data/integrations.ts';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Neural Companion Integrations"
+  description="Connect Neural Companion to local LLM providers and avatar runtimes including Ollama, LM Studio, MuseTalk, VSeeFace, and VaM."
+>
+  <header class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Modular by design</p>
+      <h1>Integrations</h1>
+      <p class="lede">Choose a local chat provider, an avatar runtime, or both. Each integration keeps its own requirements and configuration visible.</p>
+    </div>
+  </header>
+  <section class="section" aria-label="Neural Companion integrations">
+    <div class="container grid">
+      {INTEGRATIONS.filter(({ enabled }) => enabled).map((integration) => <IntegrationCard {integration} />)}
+    </div>
+  </section>
+</BaseLayout>

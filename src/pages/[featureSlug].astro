@@ -1,0 +1,46 @@
+---
+import type { GetStaticPaths } from 'astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import { FEATURES, type FeatureRecord } from '../data/features.ts';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+export const getStaticPaths: GetStaticPaths = () =>
+  FEATURES.filter(({ enabled }) => enabled).map((feature) => ({
+    params: { featureSlug: feature.slug },
+    props: { feature },
+  }));
+
+interface Props {
+  feature: FeatureRecord;
+}
+
+const { feature } = Astro.props;
+const related = FEATURES.filter(({ key }) => feature.relatedFeatures.includes(key));
+---
+
+<BaseLayout title={feature.seoTitle} description={feature.seoDescription} pathname={feature.route}>
+  <header class="page-hero">
+    <div class="container prose">
+      <p class="eyebrow">Neural Companion feature</p>
+      <h1>{feature.name}</h1>
+      <p class="lede">{feature.summary}</p>
+    </div>
+  </header>
+  <section class="section">
+    <div class="container detail-grid">
+      <article class="prose">
+        <h2>What it adds</h2>
+        <p>{feature.summary}</p>
+        <h2>Requirements</h2>
+        <ul>{feature.requirements.map((requirement) => <li>{requirement}</li>)}</ul>
+        <p><a class="text-link" href={feature.sourceUrl}>Verify in the project documentation →</a></p>
+      </article>
+      <aside class="info-panel">
+        <h2>Learn more</h2>
+        <p>The application documentation contains the current setup details and limitations.</p>
+        <a class="text-link" href={feature.documentationUrl}>Open the feature documentation →</a>
+      </aside>
+    </div>
+  </section>
+  {related.length > 0 && <section class="section" aria-labelledby="related-heading"><div class="container"><h2 id="related-heading">Related features</h2><div class="grid">{related.map((item) => <FeatureCard feature={item} />)}</div></div></section>}
+</BaseLayout>

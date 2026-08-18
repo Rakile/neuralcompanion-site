@@ -1,0 +1,32 @@
+---
+import { SITE } from '../../data/site.ts';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const guides = [
+  { name: 'Installation', description: 'Requirements, graphical installer, advanced flags, and first launch.', href: SITE.installGuide },
+  { name: 'Neural Companion manual', description: 'First run, chat and TTS, avatars, MuseTalk, addons, and troubleshooting.', href: SITE.manual },
+  { name: 'Troubleshooting', description: 'Check current known setup and runtime problems in the public documentation.', href: `${SITE.repository}/blob/main/docs/troubleshooting.md` },
+  { name: 'Avatar packs', description: 'Understand avatar-pack layout, distribution, and asset policy.', href: `${SITE.repository}/blob/main/docs/avatar_packs.md` },
+  { name: 'Addon quickstart', description: 'Learn the addon structure used to extend Neural Companion capabilities.', href: `${SITE.repository}/blob/main/docs/addon_quickstart.md` },
+] as const;
+---
+
+<BaseLayout
+  title="Neural Companion Guides"
+  description="Find official Neural Companion installation, first-run, avatar, addon, and troubleshooting documentation."
+>
+  <header class="page-hero">
+    <div class="container prose">
+      <p class="eyebrow">Official documentation</p>
+      <h1>Guides</h1>
+      <p class="lede">These links lead to the maintained documentation in the application repository, where instructions stay aligned with the current code.</p>
+    </div>
+  </header>
+  <section class="section">
+    <div class="container prose">
+      <ul class="link-list">
+        {guides.map((guide) => <li><a href={guide.href}>{guide.name}</a><p>{guide.description}</p></li>)}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,16 @@
+---
+import type { FeatureRecord } from '../data/features.ts';
+
+interface Props {
+  feature: FeatureRecord;
+}
+
+const { feature } = Astro.props;
+---
+
+<article class="card">
+  <p class="card-meta">Feature</p>
+  <h3>{feature.name}</h3>
+  <p>{feature.summary}</p>
+  <a class="text-link" href={feature.route}>Explore {feature.name}<span aria-hidden="true"> →</span></a>
+</article>

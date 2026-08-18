@@ -1,0 +1,52 @@
+---
+import CallToAction from '../components/CallToAction.astro';
+import { SITE } from '../data/site.ts';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Install Neural Companion on Windows"
+  description="Install Neural Companion on Windows with Python 3.11, FFmpeg, a chat provider, and optional speech or avatar runtimes."
+>
+  <header class="page-hero">
+    <div class="container prose">
+      <p class="eyebrow">Windows setup</p>
+      <h1>Install Neural Companion</h1>
+      <p class="lede">Begin with chat and speech in no-avatar mode. Once that works, add memory, visual replies, or one avatar runtime at a time.</p>
+    </div>
+  </header>
+  <section class="section">
+    <div class="container detail-grid">
+      <div class="prose">
+        <h2>Core requirements</h2>
+        <ul>
+          <li>Windows.</li>
+          <li>Python 3.11. The full runtime stack does not currently support Python 3.12 or newer.</li>
+          <li>FFmpeg installed on PATH or supplied through the installer tools.</li>
+          <li>A local or API chat provider.</li>
+        </ul>
+        <h2>Install and launch</h2>
+        <ol class="steps">
+          <li>Get the application from the official repository or releases page.</li>
+          <li>Run <code>INSTALL_NEURAL_COMPANION.bat</code> with Python 3.11 available.</li>
+          <li>Launch the installed application with <code>run_neural_companion.bat</code>.</li>
+          <li>Follow the first-run tutorial or test one chat provider with no avatar and one TTS backend.</li>
+        </ol>
+        <div class="notice"><strong>MuseTalk requires an NVIDIA CUDA GPU.</strong> Other avatar modes have their own external runtime or plugin requirements.</div>
+        <div class="page-actions">
+          <CallToAction href={SITE.installGuide} label="Read the complete install guide" />
+          <CallToAction href={SITE.releases} label="View releases" variant="secondary" />
+        </div>
+      </div>
+      <aside class="info-panel">
+        <h2>Good first test</h2>
+        <ul>
+          <li>Load one known working chat provider.</li>
+          <li>Select no-avatar mode.</li>
+          <li>Configure one TTS backend.</li>
+          <li>Verify typed chat before adding optional systems.</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
