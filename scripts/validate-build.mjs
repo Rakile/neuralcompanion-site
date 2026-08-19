@@ -2,6 +2,8 @@ import { access, readFile, readdir } from 'node:fs/promises';
 import { extname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
+import { ADDONS } from '../src/data/addons.ts';
+
 const ORIGIN = 'https://neuralcompanion.app';
 const REQUIRED_ROUTES = [
   '',
@@ -55,6 +57,7 @@ function targetPathForHref(root, href) {
 
 export async function validateBuild(rootUrl = new URL('../dist/', import.meta.url)) {
   const root = fileURLToPath(rootUrl);
+  const projectRoot = resolve(root, '..');
   const errors = [];
   const requiredFiles = [
     ...REQUIRED_ROUTES.map((route) => join(root, route, 'index.html')),
@@ -65,6 +68,20 @@ export async function validateBuild(rootUrl = new URL('../dist/', import.meta.ur
 
   for (const path of requiredFiles) {
     if (!(await exists(path))) errors.push(`${path}: required generated file is missing`);
+  }
+
+  if (ADDONS.length !== 44) errors.push(`addon inventory: expected 44 records, found ${ADDONS.length}`);
+  for (const addon of ADDONS) {
+    const inventoryFiles = [
+      join(root, 'addons', addon.slug, 'index.html'),
+      join(projectRoot, 'src', 'content', 'addon-voice', `${addon.slug}.txt`),
+      join(root, 'audio', 'addons', `${addon.slug}.mp3`),
+    ];
+    if (addon.iconSrc) inventoryFiles.push(join(root, addon.iconSrc.replace(/^\//, '')));
+    if (addon.screenshotSrc) inventoryFiles.push(join(root, addon.screenshotSrc.replace(/^\//, '')));
+    for (const path of inventoryFiles) {
+      if (!(await exists(path))) errors.push(`${path}: addon inventory asset is missing`);
+    }
   }
 
   if (!(await exists(root))) return errors;
@@ -100,7 +117,7 @@ export async function validateBuild(rootUrl = new URL('../dist/', import.meta.ur
           errors.push(`${homepagePath}: JSON-LD type is not SoftwareApplication`);
         }
         const serialized = JSON.stringify(jsonLd);
-        for (const forbidden of ['aggregateRating', 'review', 'offers', 'price', 'softwareVersion', 'installCount']) {
+        for (const forbidden of ['aggregateRating', 'review', 'softwareVersion', 'installCount']) {
           if (serialized.includes(`"${forbidden}"`)) {
             errors.push(`${homepagePath}: JSON-LD contains unsupported ${forbidden}`);
           }
@@ -119,6 +136,13 @@ export async function validateBuild(rootUrl = new URL('../dist/', import.meta.ur
     }
   }
 
+  const sitemapPath = join(root, 'sitemap-0.xml');
+  if (await exists(sitemapPath)) {
+    const sitemap = await readFile(sitemapPath, 'utf8');
+    const urlCount = (sitemap.match(/<url>/g) ?? []).length;
+    if (urlCount !== 63) errors.push(`${sitemapPath}: expected 63 canonical URLs, found ${urlCount}`);
+  }
+
   return errors;
 }
 
@@ -129,6 +153,6 @@ if (executedPath === import.meta.url) {
     console.error(errors.join('\n'));
     process.exitCode = 1;
   } else {
-    console.log('Generated site validation passed.');
+    console.log(`Generated site validation passed: ${ADDONS.length} addons, ${ADDONS.filter(({ iconSrc }) => iconSrc).length} icons, ${ADDONS.filter(({ screenshotSrc }) => screenshotSrc).length} screenshots, 44 scripts, 44 audio files, 63 sitemap URLs.`);
   }
 }

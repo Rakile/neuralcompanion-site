@@ -1,0 +1,358 @@
+{
+  "schemaVersion": 1,
+  "generatedFrom": "NeuralCompanion/addons/*/addon.json",
+  "addons": [
+    {
+      "id": "nc.ai_presence_mode",
+      "name": "AI Presence Mode",
+      "version": "0.1.0",
+      "description": "Configure the native fullscreen and floating AI Presence visualizer for thinking and spoken audio.",
+      "hasUi": true,
+      "sourceDirectory": "ai_presence_mode"
+    },
+    {
+      "id": "nc.audio_story_mode",
+      "name": "Audio Story Mode",
+      "version": "0.1.1",
+      "description": "Import story audio, turn JSON chatlogs into resumable novels, or narrate Markdown chapters with local-first Audio Story tools.",
+      "hasUi": true,
+      "sourceDirectory": "audio_story_mode"
+    },
+    {
+      "id": "nc.buddy_chat",
+      "name": "Buddy Chat",
+      "version": "0.2.0",
+      "description": "Natural multi-buddy chat with ready-made groups, guided setup, refinable personalities, routed voices, and shared or per-persona LLM providers.",
+      "hasUi": true,
+      "sourceDirectory": "buddy_chat"
+    },
+    {
+      "id": "nc.chat_provider_lmstudio",
+      "name": "LM Studio Chat Provider",
+      "version": "0.1.0",
+      "description": "Local LM Studio chat provider addon for NC's dynamic chat-provider registry.",
+      "hasUi": false,
+      "sourceDirectory": "lmstudio_provider"
+    },
+    {
+      "id": "nc.chat_provider_ollama",
+      "name": "Ollama Chat Provider",
+      "version": "0.1.0",
+      "description": "Local Ollama chat provider addon for NC's dynamic chat-provider registry.",
+      "hasUi": false,
+      "sourceDirectory": "ollama_provider"
+    },
+    {
+      "id": "nc.chat_provider_openai",
+      "name": "OpenAI Chat Provider",
+      "version": "0.1.0",
+      "description": "Hosted OpenAI chat provider addon for NC's dynamic chat-provider registry.",
+      "hasUi": false,
+      "sourceDirectory": "openai_provider"
+    },
+    {
+      "id": "nc.chat_provider_xai",
+      "name": "xAI / Grok Chat Provider",
+      "version": "0.1.0",
+      "description": "Hosted xAI / Grok chat provider addon for NC's dynamic chat-provider registry.",
+      "hasUi": false,
+      "sourceDirectory": "xai_provider"
+    },
+    {
+      "id": "nc.chat_session_player",
+      "name": "Conversation Replay",
+      "version": "0.1.0",
+      "description": "Dedicated conversation replay and context loading tools.",
+      "hasUi": true,
+      "sourceDirectory": "chat_session_player"
+    },
+    {
+      "id": "nc.chatterbox_multilingual_tts",
+      "name": "Chatterbox Multilingual TTS",
+      "version": "0.1.0",
+      "description": "Local Chatterbox Multilingual TTS backend exposed as a separate addon.",
+      "hasUi": true,
+      "sourceDirectory": "chatterbox_multilingual_tts"
+    },
+    {
+      "id": "nc.chatterbox_tts",
+      "name": "Chatterbox TTS",
+      "version": "0.1.0",
+      "description": "Built-in Chatterbox TTS backend exposed as an addon.",
+      "hasUi": true,
+      "sourceDirectory": "chatterbox_tts"
+    },
+    {
+      "id": "nc.claude_provider",
+      "name": "Claude Chat Provider",
+      "version": "0.1.0",
+      "description": "Anthropic Claude provider addon for NC's dynamic chat-provider registry.",
+      "hasUi": false,
+      "sourceDirectory": "claude_provider"
+    },
+    {
+      "id": "nc.clipboard_source",
+      "name": "Clipboard Source",
+      "version": "0.1.0",
+      "description": "Clipboard-backed Vision source for manually or automatically attaching copied images to chat turns or the hidden loop.",
+      "hasUi": true,
+      "sourceDirectory": "clipboard_source"
+    },
+    {
+      "id": "nc.clipboard_supervisor",
+      "name": "Clipboard Supervisor",
+      "version": "0.1.0",
+      "description": "Persona-driven clipboard image reactions for newly copied reference images.",
+      "hasUi": true,
+      "sourceDirectory": "clipboard_supervisor"
+    },
+    {
+      "id": "nc.companion_orb_overlay",
+      "name": "Companion Orb Overlay",
+      "version": "0.1.0",
+      "description": "Configure and run the Companion Orb Overlay from its own addon tab.",
+      "hasUi": true,
+      "sourceDirectory": "companion_orb_overlay"
+    },
+    {
+      "id": "nc.corsair_visual_instrument",
+      "name": "Corsair Visual Instrument",
+      "version": "0.1.0",
+      "description": "Render NeuralCompanion state, mood, and speech energy on Corsair keyboards through iCUE.",
+      "hasUi": true,
+      "sourceDirectory": "corsair_visual_instrument"
+    },
+    {
+      "id": "nc.deepseek_provider",
+      "name": "DeepSeek Chat Provider",
+      "version": "0.1.0",
+      "description": "DeepSeek chat provider addon for NC's dynamic chat-provider registry.",
+      "hasUi": false,
+      "sourceDirectory": "deepseek_provider"
+    },
+    {
+      "id": "nc.discord_voice_bridge",
+      "name": "Discord Voice Bridge",
+      "version": "0.1.0",
+      "description": "Discord voice-channel bridge for isolated NC voice bot turns.",
+      "hasUi": true,
+      "sourceDirectory": "discord_voice_bridge"
+    },
+    {
+      "id": "nc.gemini_tts_preview",
+      "name": "Gemini TTS Preview",
+      "version": "0.1.0",
+      "description": "Gemini preview TTS backend addon for Neural Companion.",
+      "hasUi": true,
+      "sourceDirectory": "gemini_tts_preview"
+    },
+    {
+      "id": "nc.heart_rate_behavior",
+      "name": "Heart Rate Behavior",
+      "version": "0.1.0",
+      "description": "",
+      "hasUi": true,
+      "sourceDirectory": "heart_rate_behavior"
+    },
+    {
+      "id": "nc.hotkeys",
+      "name": "Hotkeys",
+      "version": "0.1.0",
+      "description": "Configurable hotkeys for push-to-talk, control actions, and focused-window UI actions.",
+      "hasUi": true,
+      "sourceDirectory": "hotkeys"
+    },
+    {
+      "id": "nc.identity_artifacts",
+      "name": "NC Identity Relay",
+      "version": "0.1.0",
+      "description": "Connect imported identity continuity to Persona and explicit Chat relay state.",
+      "hasUi": true,
+      "sourceDirectory": "identity_artifacts"
+    },
+    {
+      "id": "nc.main_chat_remote",
+      "name": "Main Chat Remote",
+      "version": "0.1.0",
+      "description": "LAN phone bridge with an optional secure Internet gateway for the real NeuralCompanion main chat runtime.",
+      "hasUi": true,
+      "sourceDirectory": "main_chat_remote"
+    },
+    {
+      "id": "nc.mock_heart_rate",
+      "name": "Mock Heart Rate",
+      "version": "0.1.0",
+      "description": "Floating mock BPM window plus a reusable heart-rate service and sensory provider for addon experiments.",
+      "hasUi": true,
+      "sourceDirectory": "mock_heart_rate"
+    },
+    {
+      "id": "nc.multi_persona_roleplay",
+      "name": "Multi Persona Roleplay",
+      "version": "0.2.0",
+      "description": "Run AlternativeReality story production with narrator-led AR, personas, voice routing, Visual Reply, AudioFX, memory, validation, repair, recovery, and story bundles.",
+      "hasUi": true,
+      "sourceDirectory": "multi_persona_roleplay"
+    },
+    {
+      "id": "nc.musetalk_avatar",
+      "name": "MuseTalk Avatar",
+      "version": "0.1.0",
+      "description": "MuseTalk avatar engine provider.",
+      "hasUi": true,
+      "sourceDirectory": "musetalk_avatar"
+    },
+    {
+      "id": "nc.musetalk_preprocess",
+      "name": "MuseTalk Preprocess",
+      "version": "0.1.0",
+      "description": "First-party MuseTalk preprocess/debug tab provided through the addon framework.",
+      "hasUi": true,
+      "sourceDirectory": "musetalk_preprocess"
+    },
+    {
+      "id": "nc.no_avatar",
+      "name": "No Avatar",
+      "version": "0.1.0",
+      "description": "Audio-only avatar provider.",
+      "hasUi": false,
+      "sourceDirectory": "no_avatar"
+    },
+    {
+      "id": "nc.no_stt",
+      "name": "No STT",
+      "version": "0.1.0",
+      "description": "Disables microphone speech-to-text while keeping manually typed chat available.",
+      "hasUi": false,
+      "sourceDirectory": "no_stt"
+    },
+    {
+      "id": "nc.pockettts",
+      "name": "PocketTTS",
+      "version": "0.1.0",
+      "description": "Built-in PocketTTS backend exposed as an addon.",
+      "hasUi": true,
+      "sourceDirectory": "pockettts"
+    },
+    {
+      "id": "nc.pockettts_multilingual_tts",
+      "name": "PocketTTS Multilingual",
+      "version": "0.1.0",
+      "description": "PocketTTS multilingual backend exposed as a separate TTS addon.",
+      "hasUi": true,
+      "sourceDirectory": "pockettts_multilingual_tts"
+    },
+    {
+      "id": "nc.rag_context",
+      "name": "Document Memory",
+      "version": "0.1.0",
+      "description": "Optional chat memory from user-selected text/PDF files.",
+      "hasUi": true,
+      "sourceDirectory": "rag_context"
+    },
+    {
+      "id": "nc.scenic_avatar",
+      "name": "Scenic Avatar",
+      "version": "0.1.0",
+      "description": "Simple tag-to-image avatar engine using portable Scenic Packs.",
+      "hasUi": false,
+      "sourceDirectory": "scenic_avatar"
+    },
+    {
+      "id": "nc.screen_source",
+      "name": "Screen Source",
+      "version": "0.1.0",
+      "description": "Screen-backed hidden Vision source for attaching screenshots as ambient sensory context.",
+      "hasUi": true,
+      "sourceDirectory": "screen_source"
+    },
+    {
+      "id": "nc.screen_supervisor",
+      "name": "Screen Supervisor",
+      "version": "0.1.0",
+      "description": "Playful screen-based behavior rules that can interrupt when noteworthy on-screen content appears.",
+      "hasUi": true,
+      "sourceDirectory": "screen_supervisor"
+    },
+    {
+      "id": "nc.spotify_sense",
+      "name": "Spotify Sense",
+      "version": "0.1.0",
+      "description": "Optional Spotify Web API controls, current-track awareness, and safe music tools for NeuralCompanion.",
+      "hasUi": true,
+      "sourceDirectory": "spotify_sense"
+    },
+    {
+      "id": "nc.ua_companion_orb_overlay",
+      "name": "Ua Companion Orb Overlay",
+      "version": "0.1.0",
+      "description": "Streams MuseTalk grayscale face masks to the Unreal Companion Orb overlay.",
+      "hasUi": false,
+      "sourceDirectory": "ua_companion_orb_overlay"
+    },
+    {
+      "id": "nc.vam_avatar",
+      "name": "VaM Avatar",
+      "version": "0.1.0",
+      "description": "Virt-A-Mate avatar bridge provider.",
+      "hasUi": true,
+      "sourceDirectory": "vam_avatar"
+    },
+    {
+      "id": "nc.visual_reply",
+      "name": "Visual Reply",
+      "version": "0.1.0",
+      "description": "Addon-owned Visuals host tab for visual reply runtime settings.",
+      "hasUi": true,
+      "sourceDirectory": "visual_reply"
+    },
+    {
+      "id": "nc.visual_story_settings",
+      "name": "Visual Story Settings",
+      "version": "0.1.0",
+      "description": "Controls story-mode visual reply generation, continuity, styles, and master prompt guards.",
+      "hasUi": true,
+      "sourceDirectory": "visual_story_settings"
+    },
+    {
+      "id": "nc.vseeface_avatar",
+      "name": "VSeeFace Avatar",
+      "version": "0.1.0",
+      "description": "VSeeFace/VMC avatar engine provider.",
+      "hasUi": true,
+      "sourceDirectory": "vseeface_avatar"
+    },
+    {
+      "id": "nc.webcam_source",
+      "name": "Webcam Source",
+      "version": "0.1.0",
+      "description": "Webcam-backed hidden Vision source for attaching webcam snapshots as ambient sensory context.",
+      "hasUi": false,
+      "sourceDirectory": "webcam_source"
+    },
+    {
+      "id": "nc.webcam_supervisor",
+      "name": "Webcam Supervisor",
+      "version": "0.1.0",
+      "description": "Persona-driven webcam behavior rules that can react to posture, expression, and attention cues.",
+      "hasUi": true,
+      "sourceDirectory": "webcam_supervisor"
+    },
+    {
+      "id": "nc.whisper_english_stt",
+      "name": "Whisper English STT",
+      "version": "0.1.0",
+      "description": "Current local faster-whisper STT backend optimized for English speech.",
+      "hasUi": false,
+      "sourceDirectory": "whisper_english_stt"
+    },
+    {
+      "id": "nc.whisper_multilingual_stt",
+      "name": "Whisper Multilingual STT",
+      "version": "0.1.0",
+      "description": "Local faster-whisper STT backend for auto-detected or non-English speech.",
+      "hasUi": false,
+      "sourceDirectory": "whisper_multilingual_stt"
+    }
+  ]
+}

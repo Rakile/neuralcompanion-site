@@ -1,0 +1,330 @@
+[
+  {
+    "manifestId": "nc.ai_presence_mode",
+    "slug": "ai-presence-mode",
+    "status": "captured",
+    "file": "/images/addons/ai-presence-mode/overview.webp",
+    "width": 1800,
+    "height": 1170,
+    "provenance": "Real Neural Companion application capture; sensitive runtime identifiers are redacted where applicable."
+  },
+  {
+    "manifestId": "nc.audio_story_mode",
+    "slug": "audio-story-mode",
+    "status": "captured",
+    "file": "/images/addons/audio-story-mode/overview.webp",
+    "width": 1800,
+    "height": 1170,
+    "provenance": "Real Neural Companion application capture; sensitive runtime identifiers are redacted where applicable."
+  },
+  {
+    "manifestId": "nc.buddy_chat",
+    "slug": "buddy-chat",
+    "status": "captured",
+    "file": "/images/addons/buddy-chat/overview.webp",
+    "width": 1800,
+    "height": 1170,
+    "provenance": "Real Neural Companion application capture; sensitive runtime identifiers are redacted where applicable."
+  },
+  {
+    "manifestId": "nc.chat_provider_lmstudio",
+    "slug": "lm-studio-chat-provider",
+    "status": "headless",
+    "reason": "This addon has no standalone panel; its state is represented in the shared Host runtime when selected."
+  },
+  {
+    "manifestId": "nc.chat_provider_ollama",
+    "slug": "ollama-chat-provider",
+    "status": "headless",
+    "reason": "This addon has no standalone panel; its state is represented in the shared Host runtime when selected."
+  },
+  {
+    "manifestId": "nc.chat_provider_openai",
+    "slug": "openai-chat-provider",
+    "status": "headless",
+    "reason": "This addon has no standalone panel; its state is represented in the shared Host runtime when selected."
+  },
+  {
+    "manifestId": "nc.chat_provider_xai",
+    "slug": "xai-grok-chat-provider",
+    "status": "headless",
+    "reason": "This addon has no standalone panel; its state is represented in the shared Host runtime when selected."
+  },
+  {
+    "manifestId": "nc.chat_session_player",
+    "slug": "conversation-replay",
+    "status": "captured",
+    "file": "/images/addons/conversation-replay/overview.webp",
+    "width": 1480,
+    "height": 1268,
+    "provenance": "Real Neural Companion application capture; sensitive runtime identifiers are redacted where applicable."
+  },
+  {
+    "manifestId": "nc.chatterbox_multilingual_tts",
+    "slug": "chatterbox-multilingual-tts",
+    "status": "shared-interface",
+    "reason": "The addon uses a shared Host, sensory, provider, or addon-management interface. No fake standalone screenshot is published.",
+    "nextCapture": "Open Chatterbox Multilingual TTS in a clean test profile and capture its shared panel without local paths, account names, device IDs, API keys, or pairing data."
+  },
+  {
+    "manifestId": "nc.chatterbox_tts",
+    "slug": "chatterbox-tts",
+    "status": "shared-interface",
+    "reason": "The addon uses a shared Host, sensory, provider, or addon-management interface. No fake standalone screenshot is published.",
+    "nextCapture": "Open Chatterbox TTS in a clean test profile and capture its shared panel without local paths, account names, device IDs, API keys, or pairing data."
+  },
+  {
+    "manifestId": "nc.claude_provider",
+    "slug": "claude-chat-provider",
+    "status": "headless",
+    "reason": "This addon has no standalone panel; its state is represented in the shared Host runtime when selected."
+  },
+  {
+    "manifestId": "nc.clipboard_source",
+    "slug": "clipboard-source",
+    "status": "shared-interface",
+    "reason": "The addon uses a shared Host, sensory, provider, or addon-management interface. No fake standalone screenshot is published.",
+    "nextCapture": "Open Clipboard Source in a clean test profile and capture its shared panel without local paths, account names, device IDs, API keys, or pairing data."
+  },
+  {
+    "manifestId": "nc.clipboard_supervisor",
+    "slug": "clipboard-supervisor",
+    "status": "shared-interface",
+    "reason": "The addon uses a shared Host, sensory, provider, or addon-management interface. No fake standalone screenshot is published.",
+    "nextCapture": "Open Clipboard Supervisor in a clean test profile and capture its shared panel without local paths, account names, device IDs, API keys, or pairing data."
+  },
+  {
+    "manifestId": "nc.companion_orb_overlay",
+    "slug": "companion-orb-overlay",
+    "status": "captured",
+    "file": "/images/addons/companion-orb-overlay/overview.webp",
+    "width": 1800,
+    "height": 1170,
+    "provenance": "Real Neural Companion application capture; sensitive runtime identifiers are redacted where applicable."
+  },
+  {
+    "manifestId": "nc.corsair_visual_instrument",
+    "slug": "corsair-visual-instrument",
+    "status": "captured",
+    "file": "/images/addons/corsair-visual-instrument/overview.webp",
+    "width": 1480,
+    "height": 1268,
+    "provenance": "Real Neural Companion application capture; sensitive runtime identifiers are redacted where applicable."
+  },
+  {
+    "manifestId": "nc.deepseek_provider",
+    "slug": "deepseek-chat-provider",
+    "status": "headless",
+    "reason": "This addon has no standalone panel; its state is represented in the shared Host runtime when selected."
+  },
+  {
+    "manifestId": "nc.discord_voice_bridge",
+    "slug": "discord-voice-bridge",
+    "status": "captured",
+    "file": "/images/addons/discord-voice-bridge/overview.webp",
+    "width": 1800,
+    "height": 1170,
+    "provenance": "Real Neural Companion application capture; sensitive runtime identifiers are redacted where applicable."
+  },
+  {
+    "manifestId": "nc.gemini_tts_preview",
+    "slug": "gemini-tts-preview",
+    "status": "shared-interface",
+    "reason": "The addon uses a shared Host, sensory, provider, or addon-management interface. No fake standalone screenshot is published.",
+    "nextCapture": "Open Gemini TTS Preview in a clean test profile and capture its shared panel without local paths, account names, device IDs, API keys, or pairing data."
+  },
+  {
+    "manifestId": "nc.heart_rate_behavior",
+    "slug": "heart-rate-behavior",
+    "status": "shared-interface",
+    "reason": "The addon uses a shared Host, sensory, provider, or addon-management interface. No fake standalone screenshot is published.",
+    "nextCapture": "Open Heart Rate Behavior in a clean test profile and capture its shared panel without local paths, account names, device IDs, API keys, or pairing data."
+  },
+  {
+    "manifestId": "nc.hotkeys",
+    "slug": "hotkeys",
+    "status": "captured",
+    "file": "/images/addons/hotkeys/overview.webp",
+    "width": 1480,
+    "height": 1268,
+    "provenance": "Real Neural Companion application capture; sensitive runtime identifiers are redacted where applicable."
+  },
+  {
+    "manifestId": "nc.identity_artifacts",
+    "slug": "nc-identity-relay",
+    "status": "captured",
+    "file": "/images/addons/nc-identity-relay/overview.webp",
+    "width": 1480,
+    "height": 1268,
+    "provenance": "Real Neural Companion application capture; sensitive runtime identifiers are redacted where applicable."
+  },
+  {
+    "manifestId": "nc.main_chat_remote",
+    "slug": "main-chat-remote",
+    "status": "captured",
+    "file": "/images/addons/main-chat-remote/overview.webp",
+    "width": 1480,
+    "height": 1268,
+    "provenance": "Real Neural Companion application capture; sensitive runtime identifiers are redacted where applicable."
+  },
+  {
+    "manifestId": "nc.mock_heart_rate",
+    "slug": "mock-heart-rate",
+    "status": "shared-interface",
+    "reason": "The addon uses a shared Host, sensory, provider, or addon-management interface. No fake standalone screenshot is published.",
+    "nextCapture": "Open Mock Heart Rate in a clean test profile and capture its shared panel without local paths, account names, device IDs, API keys, or pairing data."
+  },
+  {
+    "manifestId": "nc.multi_persona_roleplay",
+    "slug": "multi-persona-roleplay",
+    "status": "captured",
+    "file": "/images/addons/multi-persona-roleplay/overview.webp",
+    "width": 1800,
+    "height": 1170,
+    "provenance": "Real Neural Companion application capture; sensitive runtime identifiers are redacted where applicable."
+  },
+  {
+    "manifestId": "nc.musetalk_avatar",
+    "slug": "musetalk-avatar",
+    "status": "captured",
+    "file": "/images/addons/musetalk-avatar/overview.webp",
+    "width": 1800,
+    "height": 1170,
+    "provenance": "Real Neural Companion application capture; sensitive runtime identifiers are redacted where applicable."
+  },
+  {
+    "manifestId": "nc.musetalk_preprocess",
+    "slug": "musetalk-preprocess",
+    "status": "shared-interface",
+    "reason": "The addon uses a shared Host, sensory, provider, or addon-management interface. No fake standalone screenshot is published.",
+    "nextCapture": "Open MuseTalk Preprocess in a clean test profile and capture its shared panel without local paths, account names, device IDs, API keys, or pairing data."
+  },
+  {
+    "manifestId": "nc.no_avatar",
+    "slug": "no-avatar",
+    "status": "headless",
+    "reason": "This addon has no standalone panel; its state is represented in the shared Host runtime when selected."
+  },
+  {
+    "manifestId": "nc.no_stt",
+    "slug": "no-stt",
+    "status": "headless",
+    "reason": "This addon has no standalone panel; its state is represented in the shared Host runtime when selected."
+  },
+  {
+    "manifestId": "nc.pockettts",
+    "slug": "pockettts",
+    "status": "shared-interface",
+    "reason": "The addon uses a shared Host, sensory, provider, or addon-management interface. No fake standalone screenshot is published.",
+    "nextCapture": "Open PocketTTS in a clean test profile and capture its shared panel without local paths, account names, device IDs, API keys, or pairing data."
+  },
+  {
+    "manifestId": "nc.pockettts_multilingual_tts",
+    "slug": "pockettts-multilingual",
+    "status": "shared-interface",
+    "reason": "The addon uses a shared Host, sensory, provider, or addon-management interface. No fake standalone screenshot is published.",
+    "nextCapture": "Open PocketTTS Multilingual in a clean test profile and capture its shared panel without local paths, account names, device IDs, API keys, or pairing data."
+  },
+  {
+    "manifestId": "nc.rag_context",
+    "slug": "document-memory",
+    "status": "shared-interface",
+    "reason": "The addon uses a shared Host, sensory, provider, or addon-management interface. No fake standalone screenshot is published.",
+    "nextCapture": "Open Document Memory in a clean test profile and capture its shared panel without local paths, account names, device IDs, API keys, or pairing data."
+  },
+  {
+    "manifestId": "nc.scenic_avatar",
+    "slug": "scenic-avatar",
+    "status": "captured",
+    "file": "/images/addons/scenic-avatar/overview.webp",
+    "width": 1800,
+    "height": 1170,
+    "provenance": "Real Neural Companion application capture; sensitive runtime identifiers are redacted where applicable."
+  },
+  {
+    "manifestId": "nc.screen_source",
+    "slug": "screen-source",
+    "status": "shared-interface",
+    "reason": "The addon uses a shared Host, sensory, provider, or addon-management interface. No fake standalone screenshot is published.",
+    "nextCapture": "Open Screen Source in a clean test profile and capture its shared panel without local paths, account names, device IDs, API keys, or pairing data."
+  },
+  {
+    "manifestId": "nc.screen_supervisor",
+    "slug": "screen-supervisor",
+    "status": "shared-interface",
+    "reason": "The addon uses a shared Host, sensory, provider, or addon-management interface. No fake standalone screenshot is published.",
+    "nextCapture": "Open Screen Supervisor in a clean test profile and capture its shared panel without local paths, account names, device IDs, API keys, or pairing data."
+  },
+  {
+    "manifestId": "nc.spotify_sense",
+    "slug": "spotify-sense",
+    "status": "shared-interface",
+    "reason": "The addon uses a shared Host, sensory, provider, or addon-management interface. No fake standalone screenshot is published.",
+    "nextCapture": "Open Spotify Sense in a clean test profile and capture its shared panel without local paths, account names, device IDs, API keys, or pairing data."
+  },
+  {
+    "manifestId": "nc.ua_companion_orb_overlay",
+    "slug": "ua-companion-orb-overlay",
+    "status": "headless",
+    "reason": "This addon has no standalone panel; its state is represented in the shared Host runtime when selected."
+  },
+  {
+    "manifestId": "nc.vam_avatar",
+    "slug": "vam-avatar",
+    "status": "shared-interface",
+    "reason": "The addon uses a shared Host, sensory, provider, or addon-management interface. No fake standalone screenshot is published.",
+    "nextCapture": "Open VaM Avatar in a clean test profile and capture its shared panel without local paths, account names, device IDs, API keys, or pairing data."
+  },
+  {
+    "manifestId": "nc.visual_reply",
+    "slug": "visual-reply",
+    "status": "captured",
+    "file": "/images/addons/visual-reply/overview.webp",
+    "width": 1076,
+    "height": 1308,
+    "provenance": "Real Neural Companion application capture; sensitive runtime identifiers are redacted where applicable."
+  },
+  {
+    "manifestId": "nc.visual_story_settings",
+    "slug": "visual-story-settings",
+    "status": "captured",
+    "file": "/images/addons/visual-story-settings/overview.webp",
+    "width": 1800,
+    "height": 1170,
+    "provenance": "Real Neural Companion application capture; sensitive runtime identifiers are redacted where applicable."
+  },
+  {
+    "manifestId": "nc.vseeface_avatar",
+    "slug": "vseeface-avatar",
+    "status": "captured",
+    "file": "/images/addons/vseeface-avatar/overview.webp",
+    "width": 1800,
+    "height": 1170,
+    "provenance": "Real Neural Companion application capture; sensitive runtime identifiers are redacted where applicable."
+  },
+  {
+    "manifestId": "nc.webcam_source",
+    "slug": "webcam-source",
+    "status": "headless",
+    "reason": "This addon has no standalone panel; its state is represented in the shared Host runtime when selected."
+  },
+  {
+    "manifestId": "nc.webcam_supervisor",
+    "slug": "webcam-supervisor",
+    "status": "shared-interface",
+    "reason": "The addon uses a shared Host, sensory, provider, or addon-management interface. No fake standalone screenshot is published.",
+    "nextCapture": "Open Webcam Supervisor in a clean test profile and capture its shared panel without local paths, account names, device IDs, API keys, or pairing data."
+  },
+  {
+    "manifestId": "nc.whisper_english_stt",
+    "slug": "whisper-english-stt",
+    "status": "headless",
+    "reason": "This addon has no standalone panel; its state is represented in the shared Host runtime when selected."
+  },
+  {
+    "manifestId": "nc.whisper_multilingual_stt",
+    "slug": "whisper-multilingual-stt",
+    "status": "headless",
+    "reason": "This addon has no standalone panel; its state is represented in the shared Host runtime when selected."
+  }
+]

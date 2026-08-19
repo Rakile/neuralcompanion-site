@@ -1,0 +1,132 @@
+---
+import { ADDONS, getCategoryName, getRelatedAddons, type AddonRecord } from '../../data/addons.ts';
+import { SITE } from '../../data/site.ts';
+import { IMAGE_MEDIA } from '../../data/media.ts';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AddonVoicePlayer from '../../components/AddonVoicePlayer.astro';
+
+export function getStaticPaths() {
+  return ADDONS.map((addon) => ({ params: { addonSlug: addon.slug }, props: { addon } }));
+}
+
+interface Props { addon: AddonRecord }
+const { addon } = Astro.props as Props;
+const related = getRelatedAddons(addon);
+const title = `${addon.name} Addon | Neural Companion`;
+const trackedSourceUrl = `${addon.sourceUrl}?utm_source=neuralcompanion_site&utm_medium=website&utm_campaign=addon_${addon.slug}`;
+const voiceScripts = import.meta.glob<string>('../../content/addon-voice/*.txt', {
+  eager: true,
+  import: 'default',
+  query: '?raw',
+});
+const voiceTranscript = voiceScripts[`../../content/addon-voice/${addon.slug}.txt`]?.trim() ?? '';
+const estimatedVoiceSeconds = Math.round(voiceTranscript.split(/\s+/u).length / 2.55);
+const screenshotMedia = addon.screenshotSrc
+  ? IMAGE_MEDIA[addon.screenshotSrc as keyof typeof IMAGE_MEDIA]
+  : undefined;
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: addon.name,
+    description: addon.shortDescription,
+    url: `${SITE.origin}${addon.route}`,
+    isPartOf: { '@type': 'WebSite', name: SITE.name, url: SITE.origin },
+    about: { '@type': 'SoftwareApplication', name: SITE.name, operatingSystem: 'Windows' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.origin}/` },
+      { '@type': 'ListItem', position: 2, name: 'Addons', item: `${SITE.origin}/addons/` },
+      { '@type': 'ListItem', position: 3, name: addon.name, item: `${SITE.origin}${addon.route}` },
+    ],
+  },
+];
+---
+
+<BaseLayout title={title} description={addon.shortDescription} pathname={addon.route} image={addon.screenshotSrc ?? addon.iconSrc} jsonLd={jsonLd}>
+  <article class="addon-detail">
+    <header class="addon-detail__hero">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="/">Home</a><span aria-hidden="true">/</span><a href="/addons/">Addons</a><span aria-hidden="true">/</span><span>{addon.name}</span>
+        </nav>
+        <div class="addon-detail__heading">
+          <div class="addon-detail__icon">
+            {addon.iconSrc
+              ? <img src={addon.iconSrc} alt={`${addon.name} official addon icon`} width="186" height="186" />
+              : <span aria-hidden="true">{addon.name.slice(0, 2).toUpperCase()}</span>}
+          </div>
+          <div>
+            <p class="eyebrow">{getCategoryName(addon.category)} · {addon.status} · v{addon.version}</p>
+            <h1>{addon.name}</h1>
+            <p class="page-lede">{addon.shortDescription}</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="container addon-detail__layout">
+      <div class="addon-detail__content">
+        {addon.screenshotSrc && (
+          <figure class="addon-shot">
+            <a href={addon.screenshotSrc} aria-label={`Open full-size ${addon.name} screenshot`} data-analytics-event="screenshot_gallery_open" data-analytics-addon={addon.name} data-analytics-location="addon_detail">
+              <img src={addon.screenshotSrc} alt={`${addon.name} controls in the Neural Companion Windows application`} width={screenshotMedia?.width} height={screenshotMedia?.height} loading="eager" />
+            </a>
+            <figcaption>Real Neural Companion application interface. Select the image to inspect it at full size.</figcaption>
+          </figure>
+        )}
+
+        <AddonVoicePlayer
+          addonName={addon.name}
+          audioSrc={addon.voiceAudio}
+          transcript={voiceTranscript}
+          estimatedSeconds={estimatedVoiceSeconds}
+        />
+
+        <section class="content-block">
+          <p class="eyebrow">What I do</p>
+          <h2>Inside Neural Companion</h2>
+          <p>{addon.longDescription}</p>
+          <p class="first-person-copy">“I’m not a separate chatbot hiding behind a new tab. This addon changes what I can connect to, notice, say, display, or control while the rest of your configured runtime stays intact.”</p>
+        </section>
+
+        {(addon.requirements.length > 0 || addon.configuration.length > 0) && (
+          <section class="content-block content-block--split">
+            {addon.requirements.length > 0 && <div><h2>Requirements</h2><ul>{addon.requirements.map((item) => <li>{item}</li>)}</ul></div>}
+            {addon.configuration.length > 0 && <div><h2>Configuration overview</h2><ol>{addon.configuration.map((item) => <li>{item}</li>)}</ol></div>}
+          </section>
+        )}
+
+        <section class="content-block">
+          <h2>How it fits</h2>
+          <p>This addon uses Neural Companion’s existing runtime services and remains independently configurable. Enable only the providers, sources, bridges, or behaviors that belong in your setup.</p>
+          <div class="addon-source-actions">
+            <a class="button button--primary" href={trackedSourceUrl} rel="noopener" data-analytics-event="outbound_docs_click" data-analytics-addon={addon.name} data-analytics-location="addon_detail">Inspect source</a>
+            <a class="button button--secondary" href="/install/" data-analytics-event="install_guide_open" data-analytics-addon={addon.name} data-analytics-location="addon_detail">Installation guide</a>
+          </div>
+        </section>
+      </div>
+
+      <aside class="addon-detail__aside" aria-label={`${addon.name} technical summary`}>
+        <div class="technical-card">
+          <p class="eyebrow">Addon record</p>
+          <dl>
+            <div><dt>Manifest</dt><dd>{addon.manifestId}</dd></div>
+            <div><dt>Version</dt><dd>{addon.version}</dd></div>
+            <div><dt>Interface</dt><dd>{addon.hasUi ? 'Configurable UI' : 'Shared or headless runtime'}</dd></div>
+            <div><dt>Status</dt><dd>{addon.status}</dd></div>
+          </dl>
+        </div>
+        {related.length > 0 && (
+          <div class="technical-card">
+            <h2>Related addons</h2>
+            <ul class="related-list">{related.map((item) => <li><a href={item.route}>{item.name}<span>→</span></a></li>)}</ul>
+          </div>
+        )}
+      </aside>
+    </div>
+  </article>
+</BaseLayout>

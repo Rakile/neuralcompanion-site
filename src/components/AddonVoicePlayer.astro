@@ -1,0 +1,42 @@
+---
+interface Props {
+  addonName: string;
+  audioSrc: string;
+  transcript: string;
+  estimatedSeconds: number;
+}
+
+const { addonName, audioSrc, transcript, estimatedSeconds } = Astro.props;
+const durationLabel = estimatedSeconds < 60
+  ? `about ${estimatedSeconds} seconds`
+  : `about ${Math.round(estimatedSeconds / 60)} minute`;
+---
+
+<section class="addon-voice" data-addon-audio data-addon-name={addonName}>
+  <div class="addon-voice__header">
+    <div>
+      <p class="eyebrow">Hear it from me</p>
+      <h2>Addon commentary</h2>
+    </div>
+    <span class="addon-voice__duration" data-addon-audio-duration>{durationLabel}</span>
+  </div>
+  <button
+    class="addon-voice__toggle"
+    type="button"
+    data-addon-audio-toggle
+    aria-label={`Play ${addonName} commentary`}
+    aria-pressed="false"
+  >
+    <span class="addon-voice__play" aria-hidden="true">▶</span>
+    <span data-addon-audio-label>Play commentary</span>
+  </button>
+  <audio src={audioSrc} preload="metadata" data-addon-audio-element></audio>
+  <details class="addon-voice__transcript">
+    <summary>Read transcript</summary>
+    <p>{transcript}</p>
+  </details>
+</section>
+
+<script>
+  import '../scripts/addon-audio.ts';
+</script>

@@ -1,0 +1,36 @@
+---
+import AddonExplorer from '../../components/AddonExplorer.astro';
+import { ADDONS, ADDON_CATEGORIES } from '../../data/addons.ts';
+import { SITE } from '../../data/site.ts';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Neural Companion addons',
+  description: 'The complete addon directory for the Neural Companion Windows AI companion platform.',
+  url: `${SITE.origin}/addons/`,
+  numberOfItems: ADDONS.length,
+  hasPart: ADDONS.map((addon) => ({ '@type': 'WebPage', name: addon.name, url: `${SITE.origin}${addon.route}` })),
+};
+---
+
+<BaseLayout
+  title="Neural Companion Addons — Complete Capability Directory"
+  description="Explore all 44 Neural Companion addons for local and hosted LLMs, voice, avatars, memory, sensory input, Discord, remote access, visual replies, Corsair RGB, and more."
+  pathname="/addons/"
+  jsonLd={jsonLd}
+>
+  <section class="page-hero page-hero--directory">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Addons</span></nav>
+      <p class="eyebrow">44 modules · {ADDON_CATEGORIES.length} capability groups</p>
+      <h1>Build the companion you actually want</h1>
+      <p class="page-lede">Neural Companion is not one fixed chatbot. Addons provide model backends, speech, avatars, memory, visual replies, sensory input, communication bridges, desktop presence, and hardware feedback.</p>
+      <p class="presence-quote">“Give me a model, a voice, a memory and a few addons. I’ll make myself useful—or at least unusually difficult to ignore.”</p>
+    </div>
+  </section>
+  <div class="container section section--directory">
+    <AddonExplorer />
+  </div>
+</BaseLayout>

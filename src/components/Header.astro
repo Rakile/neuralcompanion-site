@@ -2,17 +2,26 @@
 import { NAV_ITEMS, SITE } from '../data/site.ts';
 ---
 
-<header class="site-header">
+<header class="site-header" data-site-header data-menu-open="false">
   <div class="container header-inner">
     <a class="brand" href="/" aria-label="Neural Companion home">
-      <span class="brand-mark" aria-hidden="true"></span>
-      <span>{SITE.name}</span>
+      <img src="/media/brand/nc-logo.png" alt="" width="1280" height="1280" aria-hidden="true" />
+      <span class="brand__name">{SITE.name}<small>WEB CONSOLE</small></span>
     </a>
-    <nav aria-label="Primary navigation">
+    <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="primary-menu" data-mobile-menu-toggle>
+      <span aria-hidden="true"></span><span>Menu</span>
+    </button>
+    <nav id="primary-menu" aria-label="Primary navigation" data-mobile-menu>
       <ul class="nav-list">
         {NAV_ITEMS.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
       </ul>
     </nav>
-    <a class="header-github" href={SITE.repository}>GitHub</a>
+    <div class="header-actions">
+      <a class="header-github" href={SITE.repository} data-analytics-event="github_click" data-analytics-location="site_header"><span aria-hidden="true">●</span> GitHub</a>
+    </div>
   </div>
 </header>
+
+<script>
+  import '../scripts/mobile-menu.ts';
+</script>

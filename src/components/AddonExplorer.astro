@@ -1,0 +1,52 @@
+---
+import { ADDONS, ADDON_CATEGORIES, getCategoryName } from '../data/addons.ts';
+---
+
+<section class="addon-explorer" data-addon-explorer aria-labelledby="addon-explorer-heading">
+  <h2 id="addon-explorer-heading" class="visually-hidden">Addon directory</h2>
+  <div class="addon-explorer__controls">
+    <label class="addon-search">
+      <span>Search all 44 addons</span>
+      <input type="search" placeholder="Try Ollama, voice, screen, Corsair…" autocomplete="off" data-addon-search />
+    </label>
+    <div class="addon-filters" aria-label="Filter addons by category">
+      <button type="button" data-addon-filter="all" aria-pressed="true">All</button>
+      {ADDON_CATEGORIES.map((category) => (
+        <button type="button" data-addon-filter={category.id} aria-pressed="false">{category.name}</button>
+      ))}
+    </div>
+    <p class="addon-explorer__count" data-addon-count aria-live="polite">44 addons</p>
+  </div>
+
+  <div class="addon-directory">
+    {ADDONS.map((addon) => (
+      <article
+        class="addon-entry"
+        data-addon-entry
+        data-category={addon.category}
+        data-search={`${addon.name} ${addon.shortDescription} ${addon.keywords.join(' ')}`.toLocaleLowerCase()}
+      >
+        <a class="addon-entry__link" href={addon.route} aria-label={`Open ${addon.name} addon details`} data-analytics-event="addon_open" data-analytics-addon={addon.name} data-analytics-location="addon_explorer">
+          <div class="addon-entry__icon">
+            {addon.iconSrc
+              ? <img src={addon.iconSrc} alt="" width="186" height="186" loading="lazy" decoding="async" />
+              : <span aria-hidden="true">{addon.name.slice(0, 2).toUpperCase()}</span>}
+          </div>
+          <div class="addon-entry__body">
+            <div class="addon-entry__meta">
+              <span>{getCategoryName(addon.category)}</span>
+              <span>{addon.status}</span>
+            </div>
+            <h2>{addon.name}</h2>
+            <p>{addon.shortDescription}</p>
+            <span class="text-link">Inspect addon →</span>
+          </div>
+        </a>
+      </article>
+    ))}
+  </div>
+</section>
+
+<script>
+  import '../scripts/addon-explorer.ts';
+</script>

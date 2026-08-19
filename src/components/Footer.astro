@@ -1,5 +1,5 @@
 ---
-import { SITE } from '../data/site.ts';
+import { SITE, trackedExternalUrl } from '../data/site.ts';
 
 const year = new Date().getUTCFullYear();
 ---
@@ -7,14 +7,14 @@ const year = new Date().getUTCFullYear();
 <footer class="site-footer">
   <div class="container footer-inner">
     <div>
-      <strong>{SITE.name}</strong>
+      <strong class="footer-brand"><span class="status-diode" aria-hidden="true"></span>{SITE.name}</strong>
       <p>Open-source desktop AI companion software.</p>
     </div>
     <nav aria-label="Footer navigation">
-      <a href={SITE.repository}>Source</a>
-      <a href={SITE.manual}>Manual</a>
-      <a href={SITE.license}>MIT License</a>
+      <a href={trackedExternalUrl(SITE.repository, 'footer_source')} data-analytics-event="github_click" data-analytics-location="site_footer">Source</a>
+      <a href={trackedExternalUrl(SITE.manual, 'footer_manual')} data-analytics-event="outbound_docs_click" data-analytics-location="site_footer">Manual</a>
+      <a href={trackedExternalUrl(SITE.license, 'footer_license')} data-analytics-event="outbound_docs_click" data-analytics-location="site_footer">MIT License</a>
     </nav>
-    <p class="footer-note">© {year} Neural Companion contributors.</p>
+    <p class="footer-note">LOCAL-FIRST / MIT · © {year}</p>
   </div>
 </footer>
