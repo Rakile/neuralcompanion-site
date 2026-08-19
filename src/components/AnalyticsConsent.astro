@@ -1,0 +1,15 @@
+---
+const measurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID?.trim();
+---
+
+{measurementId && (
+  <aside class="analytics-consent" data-analytics-consent data-measurement-id={measurementId} hidden>
+    <p><strong>Anonymous site analytics?</strong> Help improve the docs and addon pages. No advertising profiles.</p>
+    <div>
+      <button type="button" class="button" data-analytics-accept>Allow analytics</button>
+      <button type="button" class="button button--secondary" data-analytics-decline>No thanks</button>
+    </div>
+  </aside>
+)}
+
+{measurementId && <script>import '../scripts/analytics.ts';</script>}

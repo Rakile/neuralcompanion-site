@@ -1,0 +1,30 @@
+---
+import { ADDON_CATEGORIES, ADDONS, FEATURED_ADDONS, getCategoryName } from '../data/addons.ts';
+---
+
+<section class="ecosystem-section" aria-labelledby="ecosystem-heading">
+  <div class="container">
+    <div class="section-heading section-heading--ecosystem">
+      <div>
+        <p class="eyebrow">44 actual application modules</p>
+        <h2 id="ecosystem-heading">The addon ecosystem is the product architecture</h2>
+      </div>
+      <p class="section-intro">Neural Companion is not one fixed chatbot. Providers, voices, avatars, sensory sources, visual systems, remote bridges, and hardware instruments plug into the same runtime.</p>
+    </div>
+    <div class="ecosystem-map">
+      {ADDON_CATEGORIES.map((category) => {
+        const count = ADDONS.filter((addon) => addon.category === category.id).length;
+        return <a href={`/addons/?category=${category.id}`}><span>{String(count).padStart(2, '0')}</span><strong>{category.name}</strong><small>{category.description}</small></a>;
+      })}
+    </div>
+    <div class="featured-addons">
+      {FEATURED_ADDONS.slice(0, 6).map((addon) => (
+        <a href={addon.route} class="featured-addon">
+          {addon.iconSrc ? <img src={addon.iconSrc} alt="" width="186" height="186" loading="lazy" /> : <span aria-hidden="true">{addon.name.slice(0, 2)}</span>}
+          <div><small>{getCategoryName(addon.category)}</small><strong>{addon.name}</strong><p>{addon.shortDescription}</p></div>
+        </a>
+      ))}
+    </div>
+    <a class="directory-cta" href="/addons/"><span>Open the complete addon directory</span><strong>44 addons →</strong></a>
+  </div>
+</section>

@@ -1,6 +1,6 @@
 ---
 import CallToAction from '../../components/CallToAction.astro';
-import { SITE } from '../../data/site.ts';
+import { SITE, trackedExternalUrl } from '../../data/site.ts';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
 
@@ -14,8 +14,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       <h1>Changelog</h1>
       <p class="lede">Release history changes with the application. The public repository remains the authoritative source for shipped updates and downloadable builds.</p>
       <div class="page-actions">
-        <CallToAction href={SITE.changelog} label="Read the changelog" />
-        <CallToAction href={SITE.releases} label="Browse releases" variant="secondary" />
+        <CallToAction href={trackedExternalUrl(SITE.changelog, 'changelog')} label="Read the changelog" analyticsEvent="outbound_docs_click" analyticsLocation="changelog_hero" />
+        <CallToAction href={trackedExternalUrl(SITE.releases, 'changelog_releases')} label="Browse releases" variant="secondary" analyticsEvent="release_click" analyticsLocation="changelog_hero" />
       </div>
     </div>
   </header>

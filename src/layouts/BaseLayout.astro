@@ -1,4 +1,6 @@
 ---
+import AnalyticsConsent from '../components/AnalyticsConsent.astro';
+import CompanionOrb from '../components/CompanionOrb.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import SeoHead from '../components/SeoHead.astro';
@@ -20,7 +22,8 @@ const { title, description, pathname = Astro.url.pathname, image, jsonLd } = Ast
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta name="theme-color" content="#080b12" />
+    <meta name="theme-color" content="#070b10" />
+    <link rel="icon" href="/favicon.png" type="image/png" />
     <SeoHead {title} {description} {pathname} {image} {jsonLd} />
   </head>
   <body>
@@ -30,5 +33,7 @@ const { title, description, pathname = Astro.url.pathname, image, jsonLd } = Ast
       <slot />
     </main>
     <Footer />
+    <CompanionOrb />
+    <AnalyticsConsent />
   </body>
 </html>

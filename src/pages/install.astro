@@ -1,6 +1,6 @@
 ---
 import CallToAction from '../components/CallToAction.astro';
-import { SITE } from '../data/site.ts';
+import { SITE, trackedExternalUrl } from '../data/site.ts';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
@@ -34,8 +34,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </ol>
         <div class="notice"><strong>MuseTalk requires an NVIDIA CUDA GPU.</strong> Other avatar modes have their own external runtime or plugin requirements.</div>
         <div class="page-actions">
-          <CallToAction href={SITE.installGuide} label="Read the complete install guide" />
-          <CallToAction href={SITE.releases} label="View releases" variant="secondary" />
+          <CallToAction href={trackedExternalUrl(SITE.installGuide, 'install_guide')} label="Read the complete install guide" analyticsEvent="install_guide_open" analyticsLocation="install_steps" />
+          <CallToAction href={trackedExternalUrl(SITE.releases, 'install_releases')} label="View releases" variant="secondary" analyticsEvent="release_click" analyticsLocation="install_steps" />
         </div>
       </div>
       <aside class="info-panel">

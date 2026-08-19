@@ -1,27 +1,49 @@
 ---
-import { SITE } from '../data/site.ts';
+import { SITE, trackedExternalUrl } from '../data/site.ts';
 import CallToAction from './CallToAction.astro';
 
-const trackedRepository = `${SITE.repository}?utm_source=neuralcompanion_site&utm_medium=website&utm_campaign=homepage`;
+const trackedRepository = trackedExternalUrl(SITE.repository, 'homepage');
 ---
 
-<section class="hero">
-  <div class="container hero-grid">
-    <div>
+<section class="hero hero--production">
+  <div class="container hero-grid hero-grid--production">
+    <div class="hero-content">
       <p class="eyebrow">Local-first · Open source · Modular</p>
       <h1>Neural Companion</h1>
-      <p class="hero-kicker">Open-source AI companion platform for Windows.</p>
+      <p class="hero-kicker">An open-source Windows AI companion platform that you configure—not a personality somebody else decided for you.</p>
       <p class="hero-copy">
         Real-time voice, persistent memory, AI avatars, visual replies, and modular integrations—built around local or API models you choose.
       </p>
       <div class="action-group">
-        <CallToAction href="/download/" label="Download" />
-        <CallToAction href={trackedRepository} label="View on GitHub" variant="secondary" />
+        <CallToAction href="/download/" label="Download" analyticsEvent="download_click" analyticsLocation="homepage_hero" />
+        <CallToAction href={trackedRepository} label="View on GitHub" variant="secondary" analyticsEvent="github_click" analyticsLocation="homepage_hero" />
       </div>
+      <ul class="hero-facts" aria-label="Neural Companion product facts">
+        <li><strong>44</strong><span>addon modules</span></li>
+        <li><strong>Local or API</strong><span>model backends</span></li>
+        <li><strong>MIT</strong><span>open source</span></li>
+      </ul>
     </div>
-    <div class="presence-visual" aria-hidden="true">
-      <div class="presence-ring"></div>
-      <div class="presence-orb"></div>
+    <div class="hero-console hero-console--authentic">
+      <div class="hero-console__titlebar">
+        <span><i aria-hidden="true"></i> NEURAL COMPANION</span>
+        <span class="hero-console__label">REAL APPLICATION UI</span>
+      </div>
+      <div class="hero-console__tabs" aria-hidden="true">
+        <span class="is-active">HOST</span>
+        <span>CHAT WINDOW</span>
+        <span>MUSETALK</span>
+      </div>
+      <div class="hero-console__screen">
+        <img
+          src="/images/product/nc-host.webp"
+          alt="Neural Companion Host workspace showing its local runtime controls."
+          width="1800"
+          height="1012"
+          decoding="async"
+          fetchpriority="high"
+        />
+      </div>
     </div>
   </div>
 </section>

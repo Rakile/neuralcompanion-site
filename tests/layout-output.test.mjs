@@ -9,22 +9,30 @@ test('built homepage includes shared metadata and semantic landmarks', async () 
   assert.match(html, /<meta name="description" content="[^"]+">/);
   assert.match(
     html,
-    /<meta property="og:image" content="https:\/\/raw\.githubusercontent\.com\/Rakile\/NeuralCompanion\/main\/docs\/readme_images\/git_front\.png">/,
+    /<meta property="og:image" content="https:\/\/neuralcompanion\.app\/images\/social\/neural-companion-og\.webp">/,
   );
   assert.match(html, /<meta name="twitter:card" content="summary_large_image">/);
   assert.match(html, /<a class="skip-link" href="#main-content">Skip to content<\/a>/);
-  assert.match(html, /<nav aria-label="Primary navigation">/);
+  assert.match(html, /<nav[^>]+aria-label="Primary navigation"[^>]*>/);
   assert.match(html, /<main id="main-content">/);
   assert.match(html, /<footer class="site-footer">/);
+});
+
+test('header brand presents only the Neural Companion product name', async () => {
+  const html = await readFile(new URL('../dist/index.html', import.meta.url), 'utf8');
+
+  assert.match(html, /class="brand__name">Neural Companion<\/span>/);
+  assert.doesNotMatch(html, /WEB CONSOLE/i);
 });
 
 test('built homepage explains the product and emits factual software data', async () => {
   const html = await readFile(new URL('../dist/index.html', import.meta.url), 'utf8');
 
-  assert.match(html, /Open-source AI companion platform for Windows/);
+  assert.match(html, /open-source Windows AI companion platform/i);
   assert.match(html, /Real-time voice, persistent memory, AI avatars, visual replies/);
   assert.match(html, /"@type":"SoftwareApplication"/);
-  assert.doesNotMatch(html, /aggregateRating|reviewCount|price/);
+  assert.doesNotMatch(html, /aggregateRating|reviewCount/);
+  assert.match(html, /"price":"0"/);
 });
 
 test('feature and integration indexes are generated', async () => {

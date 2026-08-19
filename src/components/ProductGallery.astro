@@ -1,0 +1,29 @@
+---
+import { imageMedia } from '../data/media.ts';
+
+const captures = [
+  { src: '/images/product/nc-host.webp', title: 'Host runtime', copy: 'Select chat, speech, avatar, and sensory providers from the main runtime workspace.' },
+  { src: '/images/product/nc-addons.webp', title: 'Addon manager', copy: 'Enable only the modules that belong in your configuration.' },
+  { src: '/images/product/nc-visual-reply.webp', title: 'Visual Reply', copy: 'Configure hosted or local ComfyUI image replies and inspect generated history.' },
+  { src: '/images/product/nc-musetalk.webp', title: 'MuseTalk', copy: 'Prepare and run a local talking-face avatar in its isolated runtime.' },
+] as const;
+---
+
+<section class="product-gallery-section" aria-labelledby="gallery-heading">
+  <div class="container">
+    <div class="section-heading">
+      <div><p class="eyebrow">Real application captures</p><h2 id="gallery-heading">See the system, not a marketing mockup</h2></div>
+      <p class="section-intro">These interfaces come from the running Windows application. Open any frame to inspect the original controls.</p>
+    </div>
+    <div class="product-gallery">
+      {captures.map((capture, index) => (
+        <figure class:list={['product-gallery__item', { 'product-gallery__item--wide': index === 0 }]}>
+          <a href={capture.src} aria-label={`Open full-size ${capture.title} screenshot`} data-gallery-open data-analytics-event="screenshot_gallery_open" data-analytics-location="homepage_gallery">
+            <img src={capture.src} alt={`${capture.title} in Neural Companion`} width={imageMedia(capture.src).width} height={imageMedia(capture.src).height} loading={index === 0 ? 'eager' : 'lazy'} decoding="async" />
+          </a>
+          <figcaption><strong>{capture.title}</strong><span>{capture.copy}</span></figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>

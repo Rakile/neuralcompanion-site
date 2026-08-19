@@ -1,7 +1,10 @@
 ---
 import FeatureCard from '../components/FeatureCard.astro';
+import AddonEcosystem from '../components/AddonEcosystem.astro';
 import Hero from '../components/Hero.astro';
 import IntegrationCard from '../components/IntegrationCard.astro';
+import PersonalitySpectrum from '../components/PersonalitySpectrum.astro';
+import ProductGallery from '../components/ProductGallery.astro';
 import { FEATURES } from '../data/features.ts';
 import { INTEGRATIONS } from '../data/integrations.ts';
 import { SITE } from '../data/site.ts';
@@ -17,6 +20,13 @@ const jsonLd = {
   url: SITE.origin,
   downloadUrl: SITE.releases,
   codeRepository: SITE.repository,
+  license: SITE.license,
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+    url: SITE.releases,
+  },
 };
 ---
 
@@ -26,6 +36,9 @@ const jsonLd = {
   jsonLd={jsonLd}
 >
   <Hero />
+  <PersonalitySpectrum />
+  <ProductGallery />
+  <AddonEcosystem />
   <section class="section" aria-labelledby="features-heading">
     <div class="container">
       <div class="section-heading">
