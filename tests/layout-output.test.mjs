@@ -18,6 +18,13 @@ test('built homepage includes shared metadata and semantic landmarks', async () 
   assert.match(html, /<footer class="site-footer">/);
 });
 
+test('header brand presents only the Neural Companion product name', async () => {
+  const html = await readFile(new URL('../dist/index.html', import.meta.url), 'utf8');
+
+  assert.match(html, /class="brand__name">Neural Companion<\/span>/);
+  assert.doesNotMatch(html, /WEB CONSOLE/i);
+});
+
 test('built homepage explains the product and emits factual software data', async () => {
   const html = await readFile(new URL('../dist/index.html', import.meta.url), 'utf8');
 

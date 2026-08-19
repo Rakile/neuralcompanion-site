@@ -15,6 +15,7 @@ Manual captures must use a clean test profile. Redact local paths, API credentia
 ## Regenerate addon voice
 
 The renderer reads Neural Companion's configured Chatterbox backend and voice at runtime. It never copies the private voice reference into this repository.
+Long commentary is rendered in NC-sized sentence chunks and joined with short pauses. Do not replace this with a single Chatterbox generation call: long one-pass generations can drift into unintelligible speech near the ending.
 
 ```powershell
 node scripts\generate-addon-voice.mjs

@@ -11,9 +11,99 @@ import argparse
 import json
 from pathlib import Path
 import random
+import re
 import sys
 from types import SimpleNamespace
 from typing import Any
+
+
+TTS_CHUNK_TARGET_CHARS = 100
+TTS_CHUNK_MAX_CHARS = 200
+TTS_CHUNK_PAUSE_MS = 140
+
+
+def _split_oversized_sentence(sentence: str) -> list[str]:
+    parts: list[str] = []
+    remaining = sentence.strip()
+    while len(remaining) > TTS_CHUNK_MAX_CHARS:
+        window = remaining[: TTS_CHUNK_MAX_CHARS + 1]
+        split_at = max(
+            window.rfind(mark, TTS_CHUNK_TARGET_CHARS)
+            for mark in ("; ", ": ", ", ", " ")
+        )
+        if split_at < TTS_CHUNK_TARGET_CHARS:
+            split_at = TTS_CHUNK_MAX_CHARS
+        elif window[split_at].isspace():
+            split_at += 1
+        part = remaining[:split_at].strip()
+        if part:
+            parts.append(part)
+        remaining = remaining[split_at:].strip()
+    if remaining:
+        parts.append(remaining)
+    return parts
+
+
+def _chunk_commentary(text: str) -> list[str]:
+    """Match NC's standard short speech chunks to prevent Chatterbox drift."""
+    normalized = re.sub(r"\s+", " ", str(text or "")).strip()
+    if not normalized:
+        return []
+
+    sentences = [
+        sentence.strip()
+        for sentence in re.split(r"(?<=[.!?])\s+", normalized)
+        if sentence.strip()
+    ]
+    chunks: list[str] = []
+    current: list[str] = []
+    current_length = 0
+
+    for sentence in sentences:
+        for part in _split_oversized_sentence(sentence):
+            separator_length = 1 if current else 0
+            if current and current_length + separator_length + len(part) > TTS_CHUNK_MAX_CHARS:
+                chunks.append(" ".join(current))
+                current = []
+                current_length = 0
+                separator_length = 0
+            current.append(part)
+            current_length += separator_length + len(part)
+            if current_length >= TTS_CHUNK_TARGET_CHARS:
+                chunks.append(" ".join(current))
+                current = []
+                current_length = 0
+
+    if current:
+        chunks.append(" ".join(current))
+    return chunks
+
+
+def _join_waveforms(torch_module: Any, waveforms: list[Any], sample_rate: int) -> Any:
+    if not waveforms:
+        raise RuntimeError("Chatterbox returned no commentary segments.")
+    normalized = []
+    for waveform in waveforms:
+        tensor = waveform if hasattr(waveform, "dim") else torch_module.as_tensor(waveform)
+        if tensor.dim() == 1:
+            tensor = tensor.unsqueeze(0)
+        if tensor.dim() != 2:
+            raise RuntimeError(f"Unsupported Chatterbox waveform shape: {tuple(tensor.shape)}")
+        normalized.append(tensor)
+
+    pause_samples = max(1, round(sample_rate * TTS_CHUNK_PAUSE_MS / 1000))
+    joined = []
+    for index, tensor in enumerate(normalized):
+        joined.append(tensor)
+        if index < len(normalized) - 1:
+            joined.append(
+                torch_module.zeros(
+                    (tensor.shape[0], pause_samples),
+                    dtype=tensor.dtype,
+                    device=tensor.device,
+                )
+            )
+    return torch_module.cat(joined, dim=-1)
 
 
 class RuntimeConfig:
@@ -108,9 +198,11 @@ def render(nc_root: Path, script_dir: Path, output_dir: Path) -> None:
         for slug, text in scripts.items():
             filename = f"{slug}.wav"
             try:
-                waveform = service.generate(text, **kwargs)
+                chunks = _chunk_commentary(text)
+                generated = [service.generate(chunk, **kwargs) for chunk in chunks]
+                waveform = _join_waveforms(torch, generated, service.sr)
                 save_audio_file(output_dir / filename, waveform, service.sr)
-                print(f"Rendered addons/{filename}", flush=True)
+                print(f"Rendered addons/{filename} in {len(chunks)} stable chunks", flush=True)
             except Exception as exc:
                 failures.append(f"addons/{filename}: {exc}")
                 print(f"Failed addons/{filename}: {exc}", file=sys.stderr, flush=True)

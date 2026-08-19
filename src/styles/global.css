@@ -130,16 +130,7 @@ select {
 }
 
 .brand__name {
-  display: grid;
-  gap: 0.05rem;
-}
-
-.brand small {
-  margin-left: 0.15rem;
-  color: var(--cyan);
-  font-size: 0.52rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
+  display: inline;
 }
 
 .brand-mark {
@@ -1327,7 +1318,7 @@ code {
 
 .hero--production h1 {
   max-width: 8ch;
-  font-size: clamp(3.8rem, 8vw, 7.8rem);
+  font-size: clamp(3.8rem, 6.4vw, 6.4rem);
   line-height: 0.88;
   letter-spacing: -0.07em;
 }

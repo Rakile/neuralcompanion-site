@@ -1,8 +1,38 @@
 import assert from 'node:assert/strict';
+import { execFile } from 'node:child_process';
 import { readFile, stat } from 'node:fs/promises';
 import test from 'node:test';
+import { fileURLToPath } from 'node:url';
+import { promisify } from 'node:util';
 
 import { ADDONS } from '../src/data/addons.ts';
+
+const execFileAsync = promisify(execFile);
+
+test('commentary renderer keeps each Chatterbox generation inside NC speech chunk limits', async () => {
+  const first = 'The first section explains one addon clearly, preserves the configured companion voice, and stays short enough for stable speech generation.';
+  const second = 'The second section carries the requirements and sarcastic closing without asking one long model generation to remain coherent forever.';
+  const fixture = `${first} ${second}`;
+  const scriptPath = new URL('../scripts/render-orb-voice.py', import.meta.url);
+  const probe = [
+    'import importlib.util, json, sys',
+    'spec = importlib.util.spec_from_file_location("voice_renderer", sys.argv[1])',
+    'module = importlib.util.module_from_spec(spec)',
+    'spec.loader.exec_module(module)',
+    'print(json.dumps(module._chunk_commentary(sys.argv[2])))',
+  ].join('; ');
+
+  const { stdout } = await execFileAsync(
+    'python',
+    ['-c', probe, fileURLToPath(scriptPath), fixture],
+    { env: { ...process.env, PYTHONDONTWRITEBYTECODE: '1' } },
+  );
+  const chunks = JSON.parse(stdout.trim());
+
+  assert.deepEqual(chunks, [first, second]);
+  assert.ok(chunks.every((chunk) => chunk.length <= 200));
+  assert.equal(chunks.join(' '), fixture);
+});
 
 test('every addon has unique editable first-person commentary of a useful length', async () => {
   const scripts = [];
