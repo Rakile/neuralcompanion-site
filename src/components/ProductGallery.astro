@@ -2,18 +2,21 @@
 import { imageMedia } from '../data/media.ts';
 
 const captures = [
-  { src: '/images/product/nc-host.webp', title: 'Host runtime', copy: 'Select chat, speech, avatar, and sensory providers from the main runtime workspace.' },
-  { src: '/images/product/nc-addons.webp', title: 'Addon manager', copy: 'Enable only the modules that belong in your configuration.' },
-  { src: '/images/product/nc-visual-reply.webp', title: 'Visual Reply', copy: 'Configure hosted or local ComfyUI image replies and inspect generated history.' },
-  { src: '/images/product/nc-musetalk.webp', title: 'MuseTalk', copy: 'Prepare and run a local talking-face avatar in its isolated runtime.' },
+  { src: '/images/product/native-runtime.webp', title: 'Native runtime workspace', copy: 'A clearer setup flow for language, speech, voice, visual reply, avatars, and session profiles.' },
+  { src: '/images/product/native-conversation.webp', title: 'Native conversation workspace', copy: 'Conversation, runtime controls, and session feedback share one focused desktop workspace.' },
+  { src: '/images/product/native-addons.webp', title: 'Native addon manager', copy: 'Browse and configure the modular addon system through the new native interface.' },
 ] as const;
 ---
 
 <section class="product-gallery-section" aria-labelledby="gallery-heading">
   <div class="container">
+    <div class="release-preview" role="note">
+      <span class="release-preview__status">In development</span>
+      <p><strong>A major native UI update is on the way.</strong> Here is an early look at the new Neural Companion workspace while development continues.</p>
+    </div>
     <div class="section-heading">
-      <div><p class="eyebrow">Real application captures</p><h2 id="gallery-heading">See the system, not a marketing mockup</h2></div>
-      <p class="section-intro">These interfaces come from the running Windows application. Open any frame to inspect the original controls.</p>
+      <div><p class="eyebrow">Native interface preview · Real application captures</p><h2 id="gallery-heading">A first look at what is coming</h2></div>
+      <p class="section-intro">These are real captures from the native-QML development build. The interface may continue to evolve before release.</p>
     </div>
     <div class="product-gallery">
       {captures.map((capture, index) => (

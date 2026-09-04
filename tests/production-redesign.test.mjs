@@ -124,3 +124,22 @@ test('homepage tells the configurable-product story without fake telemetry or au
   assert.doesNotMatch(html, /data-voice-consent/);
   assert.doesNotMatch(html, /data-page-audio-src/);
 });
+
+test('homepage previews the incoming native interface with authentic application captures', async () => {
+  const html = await readFile(new URL('../dist/index.html', import.meta.url), 'utf8');
+  assert.match(html, /A major native UI update is on the way/);
+  assert.match(html, /Native interface preview/);
+  assert.match(html, /\/images\/product\/native-runtime\.webp/);
+  assert.match(html, /\/images\/product\/native-conversation\.webp/);
+  assert.match(html, /\/images\/product\/native-addons\.webp/);
+});
+
+test('homepage presents the native interface update before the existing product story', async () => {
+  const html = await readFile(new URL('../dist/index.html', import.meta.url), 'utf8');
+  const previewPosition = html.indexOf('Native interface preview');
+  const heroPosition = html.indexOf('Local-first · Open source · Modular');
+
+  assert.notEqual(previewPosition, -1);
+  assert.notEqual(heroPosition, -1);
+  assert.ok(previewPosition < heroPosition);
+});

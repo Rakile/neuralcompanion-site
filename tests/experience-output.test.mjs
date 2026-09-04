@@ -6,9 +6,9 @@ test('homepage publishes authentic application captures and configurable persona
   const html = await readFile(new URL('../dist/index.html', import.meta.url), 'utf8');
   assert.match(html, /Real application captures/);
   assert.match(html, /\/images\/product\/nc-host\.webp/);
-  assert.match(html, /\/images\/product\/nc-addons\.webp/);
-  assert.match(html, /\/images\/product\/nc-visual-reply\.webp/);
-  assert.match(html, /\/images\/product\/nc-musetalk\.webp/);
+  assert.match(html, /\/images\/product\/native-runtime\.webp/);
+  assert.match(html, /\/images\/product\/native-conversation\.webp/);
+  assert.match(html, /\/images\/product\/native-addons\.webp/);
   assert.match(html, /Same engine\. Completely different personality\./);
   assert.match(html, /44<\/strong><span>addon modules/);
 });

@@ -29,6 +29,9 @@ export const IMAGE_MEDIA = {
   '/images/product/nc-memory.webp': image('/images/product/nc-memory.webp', 1800, 1012),
   '/images/product/nc-musetalk.webp': image('/images/product/nc-musetalk.webp', 1080, 1306),
   '/images/product/nc-visual-reply.webp': image('/images/product/nc-visual-reply.webp', 1076, 1308),
+  '/images/product/native-addons.webp': image('/images/product/native-addons.webp', 1480, 920),
+  '/images/product/native-conversation.webp': image('/images/product/native-conversation.webp', 1480, 920),
+  '/images/product/native-runtime.webp': image('/images/product/native-runtime.webp', 1480, 920),
 } as const satisfies Record<string, ImageMedia>;
 
 export function imageMedia(src: keyof typeof IMAGE_MEDIA): ImageMedia {
